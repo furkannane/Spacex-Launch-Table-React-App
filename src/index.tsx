@@ -3,13 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ApolloClient,InMemoryCache, ApolloProvider } from '@apollo/client';
+
+export const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: 'https://spacex-production.up.railway.app/',
+  connectToDevTools: true,
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
+  <ApolloProvider client={client}>
     <App />
+  </ApolloProvider>,
   </React.StrictMode>
 );
 
